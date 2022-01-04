@@ -1,0 +1,15 @@
+.news-card {
+   .news-box {
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      background: #fff;
+      position: relative;
+      .fa-btn {
+         position: absolute;
+         right: 10px;
+         top: 18px;
+         color: rgb(240, 56, 56);
+      }
+   }
+}

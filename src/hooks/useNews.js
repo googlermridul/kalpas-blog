@@ -10,7 +10,7 @@ const useNews = () => {
          });
    }, []);
 
-   return [news];
+   return [news, setNews];
 };
 
 export default useNews;

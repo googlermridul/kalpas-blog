@@ -43,12 +43,19 @@
                border: none;
                border-radius: 0;
                font-size: 18px;
+               transition: 0.4s;
+               &:hover,
+               &:focus {
+                  width: 50%;
+                  background: #9cf4cc;
+                  border: none;
+               }
             }
-            .btn.active {
-               width: 50%;
-               background: #9cf4cc;
-               border: none;
-            }
+            // .btn.active {
+            //    width: 50%;
+            //    background: #9cf4cc;
+            //    border: none;
+            // }
          }
       }
       .feedback {

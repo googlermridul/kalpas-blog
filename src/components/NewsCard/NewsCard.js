@@ -8,17 +8,23 @@ import { useState } from "react";
 import ReactPaginate from "react-paginate";
 
 const NewsCard = () => {
-   const [news] = useNews();
+   const [news, setNews] = useNews();
    const [pageNumber, setPageNumber] = useState(0);
 
    const newsPerPage = 6;
    const pageVisited = pageNumber * newsPerPage;
    const displayNews = news.slice(pageVisited, pageVisited + newsPerPage);
-   // console.log(displayNews);
-
    const pageCount = Math.ceil(news.length / newsPerPage);
    const changePage = ({ selected }) => {
       setPageNumber(selected);
+   };
+
+   const handleDelete = (id) => {
+      const proceed = window.confirm("Are you sure you want to delete");
+      if (proceed) {
+         const remaining = news.filter((nw) => nw.id !== id);
+         setNews(remaining);
+      }
    };
 
    return (
@@ -27,7 +33,10 @@ const NewsCard = () => {
             {displayNews.map((nw) => (
                <div className="col-md-6 col-lg-4" key={nw.id}>
                   <div className="news-box shadow">
-                     <button className="fa-btn btn">
+                     <button
+                        onClick={() => handleDelete(nw.id)}
+                        className="fa-btn btn"
+                     >
                         <FontAwesomeIcon icon={faTimes} />
                      </button>
                      <div className="text">
@@ -43,7 +52,7 @@ const NewsCard = () => {
          <ReactPaginate
             previousLabel={"Prev"}
             nextLabel={"Next"}
-            pageCount={3}
+            pageCount={pageCount}
             onPageChange={changePage}
             containerClassName="paginateBtns"
             previousLinkClassName="previousBtn"

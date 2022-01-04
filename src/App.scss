@@ -45,35 +45,12 @@ h5 {
    }
 }
 
-.btn-black {
-   background: #121619;
-   border: 1px solid #121619;
-   text-transform: uppercase;
-   color: #fff;
-   font-weight: 600;
-   height: 50px;
-   width: 175px;
-   border-radius: 100px;
-   transition: 0.4s;
-   &:hover {
-      background: transparent;
-      color: #121619;
-   }
+.form-control:focus {
+   border-color: #9cf4cc !important;
+   box-shadow: 0 0 0 0rem rgb(13 110 253 / 25%) !important;
 }
-.btn-orange {
-   background: #fe9d3e;
-   border: 1px solid #fe9d3e;
-   text-transform: uppercase;
-   color: #fff;
-   font-weight: 600;
-   height: 50px;
-   width: 175px;
-   border-radius: 100px;
-   transition: 0.4s;
-   &:hover {
-      background: transparent;
-      color: #fe9d3e;
-   }
+.btn:focus {
+   box-shadow: 0 0 0 0rem rgb(13 110 253 / 25%) !important;
 }
 
 .hamburger {
@@ -96,6 +73,9 @@ h5 {
          overflow: auto !important;
          background: #f7f7f8;
          padding: 30px !important;
+         &::-webkit-scrollbar {
+            width: 0;
+         }
       }
    }
 }
@@ -108,24 +88,37 @@ h5 {
       list-style: none;
       display: inline-block;
       background: #fff;
+      border-radius: 50px;
       margin: 3px;
+      cursor: pointer;
+      transition: 0.4s;
+      border: 1px solid #e5e5e5;
       a {
-         height: 40px;
          display: block;
-         width: 40px;
-         padding-top: 8px;
+         height: 35px;
+         padding: 6px 14px;
+         border-radius: 50px;
+         text-decoration: none;
+         color: #333;
+      }
+      &:hover {
+         background: #9cf4cc;
+         border: 1px solid #9cf4cc;
       }
    }
-   .nextBtn,
-   .previousBtn {
-      background: #333;
-      color: #fff;
-      text-decoration: none;
-   }
    .disabledBtn {
-      background: red !important;
+      background: #e5e5e5;
+      cursor: default;
+      a {
+         cursor: default;
+      }
+      &:hover {
+         background: #e5e5e5;
+         border: 1px solid #e5e5e5;
+      }
    }
    .activeBtn {
-      background: green !important;
+      background: #9cf4cc;
+      border: 1px solid #9cf4cc;
    }
 }

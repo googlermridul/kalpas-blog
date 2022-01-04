@@ -3,18 +3,38 @@ import useNews from "../../hooks/useNews";
 import newsImg from "../../images/news.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import ReactPaginate from "react-paginate";
 import "./NewsList.scss";
 import { useState } from "react";
 
 const NewsList = () => {
-   const [news] = useNews();
-   const [pageCount, setPageCount] = useState(0);
+   const [news, setNews] = useNews();
+   const [pageNumber, setPageNumber] = useState(0);
+
+   const newsPerPage = 6;
+   const pageVisited = pageNumber * newsPerPage;
+   const displayNews = news.slice(pageVisited, pageVisited + newsPerPage);
+   const pageCount = Math.ceil(news.length / newsPerPage);
+   const changePage = ({ selected }) => {
+      setPageNumber(selected);
+   };
+
+   const handleDelete = (id) => {
+      const proceed = window.confirm("Are you sure you want to delete");
+      if (proceed) {
+         const remaining = news.filter((nw) => nw.id !== id);
+         setNews(remaining);
+      }
+   };
 
    return (
       <div className="news-list">
-         {news.slice(0, 3).map((nw) => (
+         {displayNews.map((nw) => (
             <div className="news-box shadow" key={nw.id}>
-               <button className="fa-btn btn">
+               <button
+                  onClick={() => handleDelete(nw.id)}
+                  className="fa-btn btn"
+               >
                   <FontAwesomeIcon icon={faTimes} />
                </button>
                <img className="img-fluid" src={newsImg} alt="" />
@@ -25,6 +45,17 @@ const NewsList = () => {
                </div>
             </div>
          ))}
+         <ReactPaginate
+            previousLabel={"Prev"}
+            nextLabel={"Next"}
+            pageCount={pageCount}
+            onPageChange={changePage}
+            containerClassName="paginateBtns"
+            previousLinkClassName="previousBtn"
+            nextLinkClassName="nextBtn"
+            disabledClassName="disabledBtn"
+            activeClassName="activeBtn"
+         />
       </div>
    );
 };

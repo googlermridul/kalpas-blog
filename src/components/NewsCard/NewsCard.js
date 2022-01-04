@@ -6,6 +6,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./NewsCard.scss";
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
+import Iframe from "react-iframe";
 
 const NewsCard = () => {
    const [news, setNews] = useNews();
@@ -32,7 +33,11 @@ const NewsCard = () => {
          <div className="row">
             {displayNews.map((nw) => (
                <div className="col-md-6 col-lg-4" key={nw.id}>
-                  <div className="news-box shadow">
+                  <div
+                     className="news-box shadow"
+                     data-bs-toggle="modal"
+                     data-bs-target="#exampleModal"
+                  >
                      <button
                         onClick={() => handleDelete(nw.id)}
                         className="fa-btn btn"
@@ -52,7 +57,7 @@ const NewsCard = () => {
          <ReactPaginate
             previousLabel={"Prev"}
             nextLabel={"Next"}
-            pageCount={pageCount}
+            pageCount={3}
             onPageChange={changePage}
             containerClassName="paginateBtns"
             previousLinkClassName="previousBtn"
@@ -60,6 +65,29 @@ const NewsCard = () => {
             disabledClassName="disabledBtn"
             activeClassName="activeBtn"
          />
+         <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+         >
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+               <div class="modal-content">
+                  <div class="modal-body">
+                     <Iframe
+                        url="https://kalpas.in/"
+                        width="100%"
+                        height="700px"
+                        id="myId"
+                        className="myClassname"
+                        display="initial"
+                        position="relative"
+                     />
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
    );
 };

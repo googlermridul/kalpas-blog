@@ -48,7 +48,7 @@ const NewsList = () => {
          <ReactPaginate
             previousLabel={"Prev"}
             nextLabel={"Next"}
-            pageCount={pageCount}
+            pageCount={3}
             onPageChange={changePage}
             containerClassName="paginateBtns"
             previousLinkClassName="previousBtn"

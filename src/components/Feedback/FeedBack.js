@@ -7,7 +7,8 @@ import "./FeedBack.scss";
 
 const FeedBack = () => {
    const [countries, setCountries] = useState([]);
-   const [value, setValue] = useState(null);
+   const [phoneValue, setPhoneValue] = useState(null);
+   const [countryValue, setCountryValue] = useState("");
 
    useEffect(() => {
       fetch(`https://restcountries.com/v3.1/all`)
@@ -42,7 +43,7 @@ const FeedBack = () => {
          alert("your feedback submitted successfully!");
          reset();
       } else {
-         alert("sorry :(");
+         alert("something went wrong!");
       }
    };
 
@@ -101,11 +102,11 @@ const FeedBack = () => {
                      placeholder="Phone number"
                      {...register("phone", { required: true })}
                      defaultCountry="BD"
-                     value={value}
-                     onChange={setValue}
+                     value={phoneValue}
+                     onChange={setPhoneValue}
                      error={
-                        value
-                           ? isValidPhoneNumber(value)
+                        phoneValue
+                           ? isValidPhoneNumber(phoneValue)
                               ? undefined
                               : "Invalid phone number"
                            : "Phone number required"
@@ -117,8 +118,8 @@ const FeedBack = () => {
                </div>
                <div className="form-group col-md-12 mb-3">
                   <Select
-                     className="searchable-select"
                      name="country"
+                     value="name"
                      {...register("country", { required: true })}
                      options={countries.map((country) => ({
                         value: `${country.name.common}`,

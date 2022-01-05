@@ -1,4 +1,15 @@
 .news-list {
+   .col-12 {
+      position: relative;
+      .fa-btn {
+         position: absolute;
+         right: 15px;
+         top: 0;
+         bottom: 0;
+         color: rgb(240, 56, 56);
+         z-index: 1;
+      }
+   }
    .news-box {
       display: flex;
       align-items: center;
@@ -7,13 +18,7 @@
       margin-bottom: 30px;
       background: #fff;
       position: relative;
-      .fa-btn {
-         position: absolute;
-         right: 10px;
-         top: 0;
-         bottom: 0;
-         color: rgb(240, 56, 56);
-      }
+      cursor: pointer;
       img {
          width: 100px;
          height: 100px;

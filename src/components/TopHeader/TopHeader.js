@@ -4,7 +4,7 @@ import "./TopHeader.scss";
 
 const TopHeader = () => {
    return (
-      <header className="top-header navbar sticky-top flex-md-nowrap d-md-none">
+      <header className="top-header navbar sticky-top fixed-top flex-md-nowrap d-md-none">
          <button
             className="navbar-toggler position-absolute  collapsed"
             type="button"

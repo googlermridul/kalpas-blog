@@ -16,8 +16,10 @@
     "react-hook-form": "^7.22.5",
     "react-iframe": "^1.8.0",
     "react-paginate": "^8.1.0",
+    "react-phone-number-input": "^3.1.44",
     "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.0",
+    "react-select": "^5.2.1",
     "sass": "^1.45.2",
     "web-vitals": "^2.1.2"
   },

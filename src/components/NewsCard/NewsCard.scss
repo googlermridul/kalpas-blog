@@ -1,4 +1,14 @@
 .news-card {
+   .col-md-6.col-lg-4 {
+      position: relative;
+      .fa-btn {
+         position: absolute;
+         right: 15px;
+         top: 18px;
+         color: rgb(240, 56, 56);
+         z-index: 1;
+      }
+   }
    .news-box {
       padding: 20px;
       border-radius: 10px;
@@ -6,11 +16,5 @@
       background: #fff;
       position: relative;
       cursor: pointer;
-      .fa-btn {
-         position: absolute;
-         right: 10px;
-         top: 18px;
-         color: rgb(240, 56, 56);
-      }
    }
 }

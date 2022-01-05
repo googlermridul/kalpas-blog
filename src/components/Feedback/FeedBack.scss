@@ -1,9 +1,19 @@
 .feed-back {
    form {
+      max-width: 600px;
       .form-group {
          .form-control {
             padding: 15px;
          }
+      }
+   }
+   .css-319lph-ValueContainer {
+      padding: 12px 15px;
+   }
+   .PhoneInputInput {
+      border: none;
+      &:focus-visible {
+         outline: -webkit-focus-ring-color auto 0px;
       }
    }
    .submit-btn {

@@ -1,16 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import Select from "react-select";
+import "react-phone-number-input/style.css";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import "./FeedBack.scss";
 
 const FeedBack = () => {
+   const [countries, setCountries] = useState([]);
+   const [value, setValue] = useState(null);
+
+   useEffect(() => {
+      fetch(`https://restcountries.com/v3.1/all`)
+         .then((res) => {
+            return res.json();
+         })
+         .then((data) => {
+            setCountries(data);
+         });
+   }, []);
+
    const {
       register,
-      handleSubmit,
       reset,
+      handleSubmit,
       formState: { errors },
    } = useForm();
+
    const onSubmit = (data) => {
       console.log(data);
+      const res = fetch(
+         "https://kalpas-blog-default-rtdb.firebaseio.com/feedbackData.json",
+         {
+            method: "POST",
+            headers: {
+               "Content-type": "application/json",
+            },
+            body: JSON.stringify(data),
+         }
+      );
+      if (res) {
+         alert("your feedback submitted successfully!");
+         reset();
+      } else {
+         alert("sorry :(");
+      }
    };
 
    return (
@@ -46,35 +79,51 @@ const FeedBack = () => {
                </div>
                <div className="form-group col-md-6 mb-3">
                   <input
+                     id="email"
                      className="form-control"
-                     defaultValue=""
-                     {...register("email", { required: true })}
                      type="email"
                      placeholder="Email"
+                     {...register("email", {
+                        required: "required",
+                        pattern: {
+                           value: /\S+@\S+\.\S+/,
+                           message: "Entered value does not match email format",
+                        },
+                     })}
                   />
                   {errors.email && (
-                     <span className="error">email is required</span>
+                     <span role="alert">{errors.email.message}</span>
                   )}
                </div>
                <div className="form-group col-md-6 mb-3">
-                  <input
+                  <PhoneInput
                      className="form-control"
-                     defaultValue=""
+                     placeholder="Phone number"
                      {...register("phone", { required: true })}
-                     type="number"
-                     placeholder="Phone"
+                     defaultCountry="BD"
+                     value={value}
+                     onChange={setValue}
+                     error={
+                        value
+                           ? isValidPhoneNumber(value)
+                              ? undefined
+                              : "Invalid phone number"
+                           : "Phone number required"
+                     }
                   />
                   {errors.phone && (
                      <span className="error">phone is required</span>
                   )}
                </div>
                <div className="form-group col-md-12 mb-3">
-                  <input
-                     className="form-control"
-                     defaultValue=""
+                  <Select
+                     className="searchable-select"
+                     name="country"
                      {...register("country", { required: true })}
-                     type="text"
-                     placeholder="Country"
+                     options={countries.map((country) => ({
+                        value: `${country.name.common}`,
+                        label: `${country.name.common}`,
+                     }))}
                   />
                   {errors.country && (
                      <span className="error">country is required</span>

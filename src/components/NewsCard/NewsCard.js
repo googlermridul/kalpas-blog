@@ -15,7 +15,7 @@ const NewsCard = () => {
    const newsPerPage = 6;
    const pageVisited = pageNumber * newsPerPage;
    const displayNews = news.slice(pageVisited, pageVisited + newsPerPage);
-   const pageCount = Math.ceil(news.length / newsPerPage);
+   // const pageCount = Math.ceil(news.length / newsPerPage);
    const changePage = ({ selected }) => {
       setPageNumber(selected);
    };
@@ -33,17 +33,17 @@ const NewsCard = () => {
          <div className="row">
             {displayNews.map((nw) => (
                <div className="col-md-6 col-lg-4" key={nw.id}>
+                  <button
+                     onClick={() => handleDelete(nw.id)}
+                     className="fa-btn btn"
+                  >
+                     <FontAwesomeIcon icon={faTimes} />
+                  </button>
                   <div
                      className="news-box shadow"
                      data-bs-toggle="modal"
                      data-bs-target="#exampleModal"
                   >
-                     <button
-                        onClick={() => handleDelete(nw.id)}
-                        className="fa-btn btn"
-                     >
-                        <FontAwesomeIcon icon={faTimes} />
-                     </button>
                      <div className="text">
                         <h4 className="title">{nw.title.slice(0, 15)}...</h4>
                         <p className="description">{nw.body.slice(0, 85)}</p>
@@ -66,15 +66,15 @@ const NewsCard = () => {
             activeClassName="activeBtn"
          />
          <div
-            class="modal fade"
+            className="modal fade"
             id="exampleModal"
-            tabindex="-1"
+            tabIndex="-1"
             aria-labelledby="exampleModalLabel"
             aria-hidden="true"
          >
-            <div class="modal-dialog modal-xl modal-dialog-centered">
-               <div class="modal-content">
-                  <div class="modal-body">
+            <div className="modal-dialog modal-xl modal-dialog-centered">
+               <div className="modal-content">
+                  <div className="modal-body">
                      <Iframe
                         url="https://kalpas.in/"
                         width="100%"

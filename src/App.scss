@@ -122,3 +122,18 @@ h5 {
       border: 1px solid #9cf4cc;
    }
 }
+
+@media (max-width: 767px) {
+   body {
+      background: #f7f7f8 !important;
+   }
+   .top-box {
+      position: relative;
+      top: 80px;
+      border-radius: 0;
+      .main-row {
+         height: 100vh;
+         width: 100vh;
+      }
+   }
+}
